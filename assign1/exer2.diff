@@ -1,0 +1,44 @@
+--- exer1.html	2022-10-03 13:33:27.995253000 -0700
++++ exer2.html	2022-10-03 13:40:10.531105000 -0700
+@@ -66,7 +66,6 @@
+   Introduction to Programming in Emacs Lisp</a>, version 28.2 (2022)</li>
+ </ul>
+ 
+-<!-- diff，在UNIX系統上的一個工具程式，它可以比較兩個檔案之間的不同。通常它被用來比較同一個檔案，在不同版本間的差異。它可以產生一個擴展名為.diff或.patch的檔案，這個檔案可以被另一個工具程式patch來使用。-->
+ 
+ <p>Instructions:
+ Do the lab part of this assignment (including all shell commands and editing)
+@@ -79,7 +78,6 @@
+ files <samp>lab2.drib</samp>, <samp>lab3.drib</samp>, etc.)
+ </p>
+ 
+-<!-- DELETE-ME DELETE-ME DELETE-ME -->
+ <p>
+ For the editing lab exercises,
+ use intelligent ways of answering the questions. For example, if
+@@ -459,9 +457,6 @@
+ <section>
+ <h2>Submit</h2>
+ 
+-<!-- You can learn more about HTML comments at
+-	<https://en.wikipedia.org/wiki/HTML_comment#Comments>.
+-	-->
+ 
+ 	  <p>Submit the following files within a compressed <a href='https://en.wikipedia.org/wiki/Tar_(computing)'>tarball</a> named
+ 	    <samp>assign1.tgz</samp>.</p>
+@@ -486,10 +481,6 @@
+ 
+ <p>should output a list of file names that contains <samp>myspell</samp>
+   etc., with sizes and other metainformation about the files.</p>
+-<!--
+-<p>Or maybe more lines, if something has gone wrong.</p>
+--<->-
+--->
+ </section>
+ 
+ <footer>
+@@ -507,4 +498,3 @@
+ 
+ </body>
+ </html>
+-<!-- end of HTML resource -->

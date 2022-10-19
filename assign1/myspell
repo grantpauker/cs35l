@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+cat - | tr -cs 'A-Za-z' '[\n*]' | sort -u | comm -23 - <(tr -cs 'A-Za-z' '[\n*]' < /usr/share/dict/linux.words | sort -u)

@@ -1,0 +1,11 @@
+Exercise 2.1
+	1. (* (expt 2 (- 607 1)) (- (expt 2 607) 1))
+	2. (+ (logb (* (expt 2 (- 607 1)) (- (expt 2 607) 1))) 1)
+	3. It opens up a buffer that describes what the key binding C-h k does. This because C-h k itself opens up a buffer describing what a key binding does, and you are asking it to describe C-h k.
+	4. It opens up a buffer that describes what the key binding M-SPC does. This because C-h k opens up a buffer describing what a key binding does, and you are asking it to describe M-SPC. M-SPC deletes all whitespace around a point, leaving just 1 space.
+	5. The general way to do M-SPC is cycle-spacing.
+
+Homework:
+	1. When invoked on /dev/null, an IndexError is thrown
+	2. When invoked with python3, a syntax error is thrown. This is because they slightly modified the way try-except blocks are handeled in python3.
+	3. When invoked with python2, a syntax error is thrown. This is because the string formatting I used is not compatible with python2.	

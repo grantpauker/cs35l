@@ -1,0 +1,46 @@
+- Used npx create-react-app to create some npm boilerplate.
+- Pasted in the completed tic-tac-toe code from the tutorial.
+- Added a turnCount variable to the board state that allowed the board to
+	keep track of the current turn number.
+- Prevented the board from adding any more squares if turnCount is at least 6.
+- Added a selectedIndex to the board state that allowed the board to keep
+	track of the currently selected square (assuming there is one).
+- Added coloring to the squares to differentiate between selected and
+	non-selected squares.
+- Added logic to select squares if they are clicked on.
+- Created a function that found adjacent squares to a specific square.
+- Used the adjacent square function to change the background color of squares
+	adjacent to the selected square.
+- Added logic to allow players to move selected squares to available adjacent
+	squares.
+- Added on to the adjacent square function to check if moving to that square
+	would result in a win.
+- Added logic to only allow winning moves or moves that vacated the center
+	square if a player has a piece in the center square.
+- Condensed some of the if statements and cleaned up some of the logic.
+
+$ npm pack --dry-run
+npm notice
+npm notice 📦  chorus-lapilli@0.1.0
+npm notice === Tarball Contents ===
+npm notice 3.4kB README.md
+npm notice 817B  package.json
+npm notice 3.9kB public/favicon.ico
+npm notice 1.7kB public/index.html
+npm notice 5.3kB public/logo192.png
+npm notice 9.7kB public/logo512.png
+npm notice 492B  public/manifest.json
+npm notice 67B   public/robots.txt
+npm notice 639B  src/index.css
+npm notice 4.8kB src/index.js
+npm notice === Tarball Details ===
+npm notice name:          chorus-lapilli
+npm notice version:       0.1.0
+npm notice filename:      chorus-lapilli-0.1.0.tgz
+npm notice package size:  23.6 kB
+npm notice unpacked size: 30.8 kB
+npm notice shasum:        6eb27745c5afacb37824191c4539b91eacdef1fd
+npm notice integrity:     sha512-GLUcV46AwmQH+[...]A2p7rR7ud0jMQ==
+npm notice total files:   10
+npm notice
+chorus-lapilli-0.1.0.tgz

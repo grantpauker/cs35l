@@ -1,0 +1,37 @@
+1. /usr/bin/sh, /usr/local/cs/bin/sleep, /usr/bin/type
+2. 
+	sed: steam editor; allows rather powerful text manipulation
+	seq: used for generating sequences of numbers
+3. /usr/local/cs/emacs-28.2/bin/emacs-28.2
+4. /usr/bin/gcc: 8.5.0; gcc: 12.2.0. They are different as the cs department likely uses different configurations for grading.
+5. 
+	u+sx: it gives the user execute permissions and also makes the program run using the owners uid
+	o-w removes write permissions from other
+6.
+	/usr/local/cs
+	/usr/local/cs/bin
+	/usr/local/cs/share/info
+	/usr/local/cs/share/man/man1
+	/usr/local/cs/src/bash
+	/usr/local/cs/src/bash/RCS
+	/usr/local/cs/bash-5.2
+	/usr/local/cs/bash-5.2/bin
+	/usr/local/cs/bash-5.2/share
+	/usr/local/cs/bash-5.2/share/man
+	/usr/local/cs/bash-5.2/share/man/man1
+	/usr/local/cs/bash-5.2/share/info
+	/usr/local/cs/bash-5.2/share/doc
+	/usr/local/cs/bash-5.2/share/doc/bash
+	/usr/local/cs/bash-5.2/lib
+	/usr/local/cs/bash-5.2/lib/bash
+	/usr/local/cs/bash-5.2/lib/pkgconfig
+	/usr/local/cs/bash-5.2/include
+	/usr/local/cs/bash-5.2/include/bash
+	/usr/local/cs/bash-5.2/include/bash/builtins
+	/usr/local/cs/bash-5.2/include/bash/include
+7. 258 files are symbolic links in /usr/bin
+8. libbz2.so (Sun Aug 12 00:51:50 2018)
+9. transpose-chars, transpose-lines, transpose-paragraphs, transpose-regions, transpose-sentences, transpose-sexps, transpose-words
+10. Yanking in emacs is like pasting text that you have just killed. C-y will yank text.
+11. Dired gives you unused space information. Dired also includes the . and .. folders. Dired also lets you modify directories.
+12. ps -efH | grep pauker

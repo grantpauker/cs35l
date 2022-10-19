@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<title>Assignment 1. Files and shell scripting</title>
+<meta charset='UTF-8'>
+<link rel='author' href='mailto:eggert@cs.ucla.edu'>
+<link rel='license' href='copyright.html'>
+</head>
+
+<body>
+
+<h1>Assignment 1. Files and shell scripting</h1>
+
+<p><small>[<a href='../index.html'>course home</a> &gt; <a href='../assign.html'>assignments</a>]</small></p>
+
+<p>This assignment is designed to give you familiarity with two
+  things. The first is Emacs, the classic programmable text editor
+  that is a prototype for
+  modern <a href='https://en.wikipedia.org/wiki/Integrated_development_environment'>integrated
+  development environments</a> (IDEs). The second is scripting with
+  <a href='https://en.wikipedia.org/wiki/Unix_shell'>POSIX-compatible
+  shells</a>.  Software developers should be expert in both IDEs and
+  scripting, even if they don't necessarily use Emacs or <samp>sh</samp>
+  per se.</p>
+
+<p>Do this assignment on the SEASnet GNU/Linux servers
+<samp>lnxsrv11</samp>, <samp>lnxsrv12</samp>,
+<samp>lnxsrv13</samp>, or <samp>lnxsrv15</samp>,
+with <samp>/usr/local/cs/bin</samp>
+prepended to your <samp>PATH</samp>.
+You can do this by executing the shell command "<samp>export
+PATH=/usr/local/cs/bin:$PATH</samp>" after logging in, or more
+conveniently by putting that shell command into
+your <samp>$HOME/.profile</samp> file (but test this file by logging
+in via a separate session before logging out of your first session!).</p>
+
+<p>As this course has no textbook, a main goal of this assignment is
+  covering how you can discover details about this assignment’s topic,
+  details that may not be covered in lecture. Although you can get
+  some of the details by following all the links in this assignment
+  and getting the gist of those web pages, this won’t
+  suffice for everything and you’ll need to do some learning-by-doing
+  to do the assignment well. The idea is that you
+  can put this experience to good use later in this course (and in
+  real life!) when you need to come up to speed with a large software
+  ecosystem. That being said, don’t let yourself get discouraged
+  if a detail cannot be found by reading the online documentation.
+If you need a hint, ask a <abbr>TA</abbr> or an <abbr>LA</abbr>.
+(This assignment is not intended to be done without any hints!)</p>
+
+<section>
+<h2>Laboratory: Linux and Emacs scavenger hunt</h2>
+
+<ul>
+ <li>Emacs supplies its own tutorial; try it by running the shell
+ command <samp>emacs</samp> and then type <samp>control-H</samp>
+ followed by <samp>t</samp> ("<samp>C-h t</samp>", in Emacs-ese).</li>
+ <li>Keith Waclena, <a
+  href='http://www2.lib.uchicago.edu/keith/tcl-course/emacs-tutorial.html'>A
+  Tutorial Introduction to GNU Emacs</a> (2009)</li>
+ <li><a
+  href='https://www.gnu.org/software/emacs/manual/emacs.html'>The
+  Emacs editor</a>, version 28.2 (2022)</li>
+ <li><a
+  href='https://www.gnu.org/software/emacs/manual/eintr.html'>An
+  Introduction to Programming in Emacs Lisp</a>, version 28.2 (2022)</li>
+</ul>
+
+<!-- diff，在UNIX系統上的一個工具程式，它可以比較兩個檔案之間的不同。通常它被用來比較同一個檔案，在不同版本間的差異。它可以產生一個擴展名為.diff或.patch的檔案，這個檔案可以被另一個工具程式patch來使用。-->
+
+<p>Instructions:
+Do the lab part of this assignment (including all shell commands and editing)
+
+under Emacs. After issuing the shell command <samp>emacs</samp> to start Emacs,
+you can run the Emacs <samp>M-x open-dribble-file</samp> command to create
+a dribble file <samp>lab1.drib</samp> in your home directory
+that records everything you type.
+(If you do multiple Emacs sessions, name your dribble
+files <samp>lab2.drib</samp>, <samp>lab3.drib</samp>, etc.)
+</p>
+
+<!-- DELETE-ME DELETE-ME DELETE-ME -->
+<p>
+For the editing lab exercises,
+use intelligent ways of answering the questions. For example, if
+asked to move to the first occurrence of the word "scrumptious", do not
+merely use cursor keys to move the cursor by hand; instead, use the
+builtin search capabilities to find "scrumptious" quickly.
+</p>
+<p>
+To start, download a copy of the web page you're looking at into a
+file named <samp>assign1.html</samp>. You can do this
+with <a href='https://www.gnu.org/software/wget/'>Wget</a>
+or <a href='https://curl.haxx.se/'>curl</a>.
+Use <samp><a href='http://pubs.opengroup.org/onlinepubs/9699919799/utilities/cp.html'>cp</a></samp>
+to make three copies of this file. Call the copies
+<samp>exer1.html</samp>, <samp>exer2.html</samp>, and <samp>exer3.html</samp>.
+</p>
+</section>
+
+<section>
+<h3>Lab 1.1: Moving around in Emacs</h3>
+
+<oL>
+<li>Use Emacs to edit the file <samp>exer1.html</samp>.</li>
+<li>Move the cursor to just after the first occurrence of the word "HTML" (all upper-case).</li>
+<li>Now move the cursor to the start of the first later occurrence of the word "scavenger".</li>
+<li>Now move the cursor to the start of the first later occurrence of the word "self-referential".</li>
+<li>Now move the cursor to the start of the first later occurrence of the word "arro&#119;".</li>
+<li>Now move the cursor to the end of the current line.</li>
+<li>Now move the cursor to the beginning of the current line.</li>
+<li>
+Doing the above tasks with the arrow keys takes many keystrokes, or it
+involves holding down keys for a long time. Can you think of a way to
+do it with fewer keystrokes by using some of the commands available in
+Emacs?
+<li>Did you move the cursor using the arrow keys? If so, repeat the
+above steps, without using the arrow keys.</li>
+<li>When you are done, exit Emacs.</li>
+</ol>
+</section>
+
+<section>
+<h3>Lab 1.2: Deleting text in Emacs</h3>
+
+<oL>
+<li>Use Emacs to edit the file <samp>exer2.html</samp>. The idea is to
+delete its HTML comments; the resulting page should display the same
+text as the original.</li>
+
+<li>Delete the 69th line, which is an HTML comment.
+<samp>&lt;!-- HTML comments look like this, but the comment you delete
+has different text inside. --&gt;</samp></li>
+<li>Delete the HTML comment containing the text
+"<samp>DELETE-ME DELETE-ME DELETE-ME</samp>".</li>
+<li>Delete the HTML comment containing the text "<samp>https://en.wikipedia.org/wiki/HTML_comment#Comments</samp>".</li>
+<li>There are two more HTML comments; delete them too.</li>
+</ol>
+
+<p>
+Once again, try to accomplish the tasks using a small number of keystrokes.
+When you are done, save the file and exit back to the command line. You can
+check your work by using a browser to view <samp>exer2.html</samp>. Also,
+check that you haven't deleted something that you want to keep, by using
+the following command:</p>
+
+<pre><samp><a href='https://www.gnu.org/software/diffutils/'>diff</a> -u exer1.html exer2.html &gt;exer2.diff
+</samp></pre>
+
+<p>The output file <samp>exer2.diff</samp> should describe only text
+that you wanted to remove. Don't remove <samp>exer2.diff</samp>;
+you'll need it later.</p>
+</section>
+
+<section>
+<h3>Lab 1.3: Inserting text in Emacs</h3>
+
+<oL>
+<li>Use Emacs to edit the file <samp>exer3.html</samp>.</li>
+
+<li>Change the first two instances of "Assignment 1" to "Assignment 27".</li>
+<li>Change the first instance of "UTF-8" to "US-ASCII".</li>
+<li>Ooops! The file is not ASCII so you need to fix that.
+  Most of its non-ASCII characters are the
+  <a href='https://en.wikipedia.org/wiki/Unicode'>Unicode</a>
+  character <a href='https://www.fileformat.info/info/unicode/char/2019/index.htm'>&ldquo;&rsquo;&rdquo;
+  (RIGHT SINGLE QUOTATION MARK U+2019)</a>;
+  fix these by replacing each one with an ASCII
+  <a href='https://www.fileformat.info/info/unicode/char/0027/index.htm'>&ldquo;'&rdquo;
+  (U+0027 APOSTROPHE)</a>; for example, you can use <samp>M-x replace-string</samp>
+  to do this systematically.
+  Remove every
+  line that contains a non-ASCII character other than U+2019.
+  You can find the next
+  non-ASCII character by searching for the regular
+  expression "<samp>[^[:ascii:]]</samp>".
+<li>Insert an empty line after the last line containing
+"<samp>&lt;/ol&gt;</samp>".</li>
+
+<li>When you finish, save the text file and exit Emacs. As before,
+use the <samp>diff</samp> command to check your work.</li>
+</ol>
+</section>
+
+<section>
+<h3>Lab 1.4: Other editing tasks in Emacs</h3>
+
+<p>
+In addition to inserting and deleting text, there are other common tasks
+that you should know, like copy and paste, search and replace, and undo.
+</p>
+
+<oL>
+<li>Execute the command "<samp>cat exer2.html exer2.diff &gt;exer4.html</samp>"
+to create a file <samp>exer4.html</samp> that contains a copy of <samp>exer2.html</samp> followed by a copy of <samp>exer2.diff</samp>.</li>
+<li>Use Emacs to edit the file <samp>exer4.html</samp>.
+The idea is to edit the file so that it looks identical
+to <samp>exer1.html</samp> on a browser, but the file itself is a
+little bit different internally.</li>
+
+<li>Go to the end of the file. Copy the new lines in the last chunk
+of diff output, and paste them into the correct location earlier in the file.</li>
+<li>Repeat the process, until the earlier part of the file is identical
+to what was in the original.</li>
+<li>Delete the last part of the file, which contains the diff output.</li>
+<li>… except we didn't really want to do that, so undo the deletion.</li>
+
+<li>Turn the diff output into a comment, by surrounding it with
+  "<samp>&lt;!--</samp>" and "<samp>--&gt;</samp>".
+  If the diff output itself contains end-comment markers "<samp>--&gt;</samp>",
+  escape them by replacing each such "<samp>--&gt;</samp>" with
+  "<samp>--&amp;gt;</samp>".
+
+<li>Now let's try some search and replaces.
+Search the text document for the pattern "<samp>&lt;ol&gt;</samp>".
+How many instances did you find?
+Use the search and
+replace function to replace them all with the final-caps
+equivalent "<samp>&lt;oL&gt;</samp>".</li>
+
+<li>Check your work with viewing <samp>exer4.html</samp> with an HTML
+browser, and by running the shell command "<samp>diff -u
+exer1.html exer4.html &gt;exer4.diff</samp>". The only differences
+should be changes from "<samp>&lt;ol&gt;</samp>" to "<samp>&lt;oL&gt;</samp>",
+and a long HTML comment at the end.</li>
+
+</ol>
+</section>
+
+<section>
+<h3>Lab 1.5: Exploring the operating system outside Emacs</h3>
+
+<p>Use the commands that you learned in class to find
+answers to the following questions. Don't use a search engine like Google to
+find previous editions of this assignment and/or its answers, and
+don't ask your neighbor, don't use GitHub, etc.
+When you find a new command, run it so you can see exactly how it
+works.
+</p>
+
+<oL>
+<li>
+Where are the <samp>sh</samp>, <samp>sleep</samp>, and <samp>type</samp>
+commands located?
+</li>
+
+<li>
+What executable programs in <samp>/usr/bin</samp>
+have names that are exactly three characters
+long and start with the two letters <samp>se</samp>,
+and what do they do?
+</li>
+
+<li>
+When you execute the command named by the symbolic
+link <samp>/usr/local/cs/bin/emacs</samp>, which file actually is
+executed?
+</li>
+
+<li>
+What is the version number of the <samp>/usr/bin/gcc</samp> program?
+of the plain <samp>gcc</samp> program? Why are they different programs?
+</li>
+
+<li>
+The <samp>chmod</samp> program changes permissions on a file. What
+does the symbolic mode <samp>u+sx,o-w</samp> mean, in terms of permissions?</li>
+
+<li>
+Use the <samp>find</samp> command to find all directories modified
+on or after the day of this class’s first lecture,
+that are located under (or are the same as) the
+directory <samp>/usr/local/cs</samp>.
+</li>
+
+<li>
+Of the files in the same directory as <samp>find</samp>, how many of
+them are symbolic links?
+</li>
+
+<li>
+What is the oldest file in the <samp>/usr/lib64</samp>
+directory? Use the last-modified time to determine age. Specify the
+name of the file without the <samp>/usr/lib64/</samp> prefix. Don't ignore
+files whose names start with "<samp>.</samp>", but do ignore
+files under subdirectories of <samp>/usr/lib64/</samp>.
+Consider files of all types, that is, your answer might be
+a regular file, or a directory, or something else.
+</li>
+
+<li>
+In Emacs, what commands have <samp>transpose</samp> in their name?
+</li>
+
+<li>
+What does the Emacs <samp>yank</samp> function do, and how
+can you easily invoke it using keystrokes?
+</li>
+
+<li>
+When looking at the directory <samp>/usr/bin</samp>, what's the
+difference between the output of the <samp>ls -l</samp> command,
+and the directory listing of the Emacs <samp>dired</samp> command?
+</li>
+
+<li>
+Use the <samp>ps</samp> command to find your own login shell's process,
+all that process's ancestors, and all its descendants. Some
+<samp>ps</samp> options that you might find useful include
+<samp>-e</samp>, <samp>-f</samp>, <samp>-j</samp>, <samp>-l</samp>,
+<samp>-t</samp>, <samp>-H</samp>, and <samp>-T</samp>.
+</li>
+</ol>
+</section>
+
+<section>
+<h3>Lab 1.6: Doing commands in Emacs</h3>
+
+<p>
+Do these tasks all within Emacs. Don't use a shell subcommand
+if you can avoid it.</p>
+
+<oL>
+<li>Create a new directory named "<samp>junk</samp>" that's right under
+your home directory.</li>
+
+<li>In that directory, create a C source file <samp>hello.c</samp>
+that contains the following text. Take care to get the text exactly
+right, with no trailing spaces or empty lines, with the
+initial <samp>#</samp> in the leftmost column of the first line, and
+with all other lines indented to match exactly as shown:
+
+<pre><samp>#include &lt;stdio.h&gt;
+int
+main (void)
+{
+  for (;;)
+    {
+      int c = getchar ();
+      if (c &lt; 0)
+        {
+          if (ferror (stdin))
+            perror ("stdin");
+          else
+            fprintf (stderr, "EOF on input\n");
+          return 1;
+        }
+      if (putchar (c) &lt; 0 || (c == '\n' &amp;&amp; fclose (stdout) != 0))
+        {
+          perror ("stdout");
+          return 1;
+        }
+      if (c == '\n')
+        return 0;
+    }
+}
+</samp></pre>
+</li>
+
+<li>Compile this file, using the Emacs <samp>M-x compile</samp> command.
+</li>
+
+<li>Run the compiled program from Emacs using the <samp>M-!</samp> command,
+and put the program's standard output into a file
+  named <samp>hello-a1</samp> and its standard error into a file
+  <samp>hello-a2</samp>.</li>
+
+<li>Same as before, except run the program with standard
+  input being closed,
+  and put the program's standard output and error into
+  <samp>hello-b1</samp> and <samp>hello-b2</samp>, respectively.
+  Here, &ldquo;closed&rdquo; does not mean the standard input is an empty file;
+  it means that standard input is not open at all, to any file.</li>
+
+<li>Same as before, except run the program with standard
+  input being the file <samp>/etc/passwd</samp>,
+  and put the program's standard output and error into
+  <samp>hello-c1</samp> and <samp>hello-c2</samp>.</li>
+
+<li>Same as before, except run the program with standard
+  input being the file <samp>/etc/passwd</samp>
+  and standard output being the file <samp>/dev/full</samp>,
+  and put the program's standard error into <samp>hello-d2</samp>.</li>
+
+</ol>
+</section>
+
+<section>
+<h2>Homework: Scripting in the shell</h2>
+
+<p>For the homework assume you’re in the standard C or <a
+href='http://en.wikipedia.org/wiki/POSIX'>POSIX</a> <a
+href='http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap07.html#tag_07'>locale</a>. The
+shell command <a
+href='http://pubs.opengroup.org/onlinepubs/9699919799/utilities/locale.html'><samp>locale</samp></a>
+should output <samp>LC_CTYPE="C"</samp>
+or <samp>LC_CTYPE="POSIX"</samp>. If it doesn’t, use the following
+shell command:</p>
+
+<pre><samp><a href='http://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#export'>export</a> LC_ALL='C'
+</samp></pre>
+
+<p>and make sure <samp>locale</samp> outputs the right thing afterwards.</p>
+</section>
+
+<section>
+<h3>Shell scripting</h3>
+
+<ul>
+ <li>Steve Parker, <a
+  href='https://www.shellscript.sh/'>Shell Scripting Tutorial</a> (2022)</li>
+ <li>The Open Group,
+   <a href='https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html'>Shell Command Language</a> (2018)</li>
+</ul>
+
+<p>Examine the file <samp>/usr/share/dict/linux.words</samp>, which
+  contains a list of English words, one per line.
+  Each word consists of one or more ASCII characters.</p>
+
+<p>Sort this file and put the sorted output into a file <samp>sorted.words</samp>.</p>
+
+<p>Then, take a text file containing the HTML in this
+assignment’s web page, and run the following commands with that
+text file being standard input. For each command <samp>tr</samp>,
+<samp>sort</samp>, <samp>comm</samp>, read the command’s man page and
+use that to deduce what the command should do given its operands
+here. Also, look generally at what each command outputs (in
+particular, how its output differs from that of the previous command),
+and why.</p>
+
+<pre><samp>tr -c 'A-Za-z' '[\n*]'
+tr -cs 'A-Za-z' '[\n*]'
+tr -cs 'A-Za-z' '[\n*]' | sort
+tr -cs 'A-Za-z' '[\n*]' | sort -u
+tr -cs 'A-Za-z' '[\n*]' | sort -u | comm - sorted.words
+tr -cs 'A-Za-z' '[\n*]' | sort -u | comm -23 - sorted.words
+</samp></pre>
+
+<p>Let’s take the last command
+as the crude implementation of an
+  English spelling checker.
+  This implementation mishandles the input file <samp>sorted.words</samp>!
+  Write a shell script named <samp>myspell</samp>
+  that fixes this problem.
+  Your script should read from standard input and output
+  misspelled words to standard output, for a suitable
+  definition of "words".
+  The shell command:</p>
+
+<pre><samp>myspell &lt;/usr/share/dict/linux.words
+</samp></pre>
+
+<p>
+  should output nothing, because
+  the dictionary by definition contains only correctly-spelled words.
+</p>
+</section>
+
+<section>
+<h2>Submit</h2>
+
+<!-- You can learn more about HTML comments at
+	<https://en.wikipedia.org/wiki/HTML_comment#Comments>.
+	-->
+  
+	  <p>Submit the following files within a compressed <a href='https://en.wikipedia.org/wiki/Tar_(computing)'>tarball</a> named
+	    <samp>assign1.tgz</samp>.</p>
+
+<ul>
+  <li><samp>lab1.drib</samp> and any later dribble files that you generate.</li>
+  <li>The <samp>hello-??</samp> files of Lab 1.6.</li>
+  <li><samp>myspell</samp></li>
+  <li><samp>notes.txt</samp>, a text file containing any other
+    notes or comments that you'd like us to see.</li>
+</ul>
+
+<p>All files other than the <samp>.drib</samp> files should use
+  GNU/Linux style,
+  i.e., <a href='https://en.wikipedia.org/wiki/UTF-8'>UTF-8</a>
+  encoding with <a href='https://en.wikipedia.org/wiki/CRLF#Representation'>LF-terminated lines</a>.</p>
+
+<p>The shell command:</p>
+
+<pre><samp>tar -tvf assign1.tgz</samp>
+</pre>
+
+<p>should output a list of file names that contains <samp>myspell</samp>
+  etc., with sizes and other metainformation about the files.</p>
+<!--
+<p>Or maybe more lines, if something has gone wrong.</p>
+-<->-
+-->
+</section>
+
+<footer>
+<hr>
+<small>
+ &copy; 2005, 2007&ndash;2022
+ <a href='../mail-eggert.html'>Paul Eggert</a>, Steve
+ VanDeBogart, and Lei Zhang.
+ See <a href='../copyright.html'>copying rules</a>.<br />
+
+ $Id: assign1.html,v 1.65 2022/09/18 21:52:10 eggert Exp $
+
+</small>
+</footer>
+
+</body>
+</html>
+<!-- end of HTML resource -->
+<!--
+--- exer1.html	2022-10-03 13:33:27.995253000 -0700
++++ exer2.html	2022-10-03 13:40:10.531105000 -0700
+@@ -66,7 +66,6 @@
+   Introduction to Programming in Emacs Lisp</a>, version 28.2 (2022)</li>
+ </ul>
+ 
+-<!-- diff，在UNIX系統上的一個工具程式，它可以比較兩個檔案之間的不同。通常它被用來比較同一個檔案，在不同版本間的差異。它可以產生一個擴展名為.diff或.patch的檔案，這個檔案可以被另一個工具程式patch來使用。--&gt;
+ 
+ <p>Instructions:
+ Do the lab part of this assignment (including all shell commands and editing)
+@@ -79,7 +78,6 @@
+ files <samp>lab2.drib</samp>, <samp>lab3.drib</samp>, etc.)
+ </p>
+ 
+-<!-- DELETE-ME DELETE-ME DELETE-ME --&gt;
+ <p>
+ For the editing lab exercises,
+ use intelligent ways of answering the questions. For example, if
+@@ -459,9 +457,6 @@
+ <section>
+ <h2>Submit</h2>
+ 
+-<!-- You can learn more about HTML comments at
+-	<https://en.wikipedia.org/wiki/HTML_comment#Comments>.
+-	&gt;
+ 
+ 	  <p>Submit the following files within a compressed <a href='https://en.wikipedia.org/wiki/Tar_(computing)'>tarball</a> named
+ 	    <samp>assign1.tgz</samp>.</p>
+@@ -486,10 +481,6 @@
+ 
+ <p>should output a list of file names that contains <samp>myspell</samp>
+   etc., with sizes and other metainformation about the files.</p>
+-<!--
+-<p>Or maybe more lines, if something has gone wrong.</p>
+--<->-
+---&gt;
+ </section>
+ 
+ <footer>
+@@ -507,4 +498,3 @@
+ 
+ </body>
+ </html>
+-<!-- end of HTML resource --&gt;
+-->

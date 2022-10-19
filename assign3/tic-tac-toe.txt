@@ -1,0 +1,14 @@
+- Used npx create-react-app to create some npm boilerplate.
+- Pasted in the initial tic-tac-toe code.
+- Passed a prop called "value" to the square so that the grid displayed
+	the numbers 0-8.
+- Added an event handler to the square buttons so that they would log a
+	simple "click" message to the console.
+- Added a contructor and state variable to the square so it can remember
+	if it has been clicked.
+- Moved the handling of each square's state to the Board class.
+- Added a variable to store the current players turn. Alternate the
+	variable after each click.
+- Created a simple helper function to tell who has won. Check which
+	player has won on each render.
+- Added code to end the game when a player has won.
