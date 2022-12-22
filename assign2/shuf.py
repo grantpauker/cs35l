@@ -2,6 +2,7 @@
 import random
 import argparse
 
+
 def main():
     # setup argparse
     parser = argparse.ArgumentParser()
@@ -75,6 +76,7 @@ def main():
         lines = random.sample(lines, k=count)
         for line in lines:
             print(line.rstrip())
+
 
 if __name__ == "__main__":
     main()
