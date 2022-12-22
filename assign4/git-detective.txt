@@ -1,0 +1,8 @@
+The release notes indicate that this change was made between version 2.33.0 and 2.33.1.
+Using this information, I used github to compare tags 2.33.0 and 2.33.1. 
+I then looked at the list of all commits between these changes.
+I searched for commits containing the words "diff," "relative," and "segfault."
+I eventually found commit 8174627 which indicated that fixed issues involving diff, --relative, and unmerged paths.
+This was very clearly the commit that fixed the issue.
+All that was changed was a rather simple if guard (along with adding tests for the fixed code).
+Đoàn Trần Công Danh fixed this code in commit 8174627.

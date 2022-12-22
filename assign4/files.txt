@@ -1,0 +1,1 @@
+prevcur.html 2022d-2022e.html justone justone.out compare-releases 2022d-2022e.diff tzcount tzcount.txt tzdb-2012j-2022e.tzcount who-contributed.txt git.txt git-graph.pdf git-detective.txt *.patch dog

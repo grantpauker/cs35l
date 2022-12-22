@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+run_test(){
+	echo "Testing: ./randall $@"
+	[[ "$(./randall $@ | wc -c)" == "${@: -1}" ]] && echo "  SUCCESS" || echo "  FAIL"
+}
+
+run_test 50
+run_test -i rdrand -o stdio 10
+run_test -i mrand48_r 17
+run_test -o 5 10 
+run_test -i $PWD/test 9

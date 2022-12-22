@@ -1,0 +1,2 @@
+tzcount was ran with the following command:
+	git log --pretty=format:"%ci" 2012j..2022e | ./tzcount

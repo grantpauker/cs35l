@@ -1,0 +1,26 @@
+I first ran:
+ grep -n "Even newspaper reports" *
+This allowed me to find the file and line number of the offending string.
+I then ran:
+	git blame -L 895 northamerica
+This allowed me to find who wrote to that line and when.
+As a result, I learned that Paul Eggert wrote to this line on 2013-09-02 (the commit that changed this line was c8f960ec7).
+However, by running:
+	git show c8f960ec7
+I learned that he merely changed some formatting on the line.
+By running:
+	git blame c8f960ec7~ northamerica
+I was able to see who edited the line before that commit was made.
+I found that Arthur David Olson edited this line on 2006-01-30 (commit c344c562c).
+The command:
+	git show c344c562c
+Indicated that he too also only changed some formatting.
+So again, I ran
+	git blame c344c562~ northamerica
+Which taught me that Arthur David Olson again wrote to this line on 1995-12-21 (commit c12b43274).
+Finally, by running:
+	git show c12b43274
+I learned that this was the first introduction of this phrase to the repository.
+Hence I came to the conclusion that this phrase was first added to the repositor on 1995-12-21 by Arthur David Olson.
+
+

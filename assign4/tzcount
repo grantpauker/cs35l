@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# git log --pretty=format:"%ci"
+awk '{print $NF}' | sort -g | uniq -c | awk '{print $2" "$1}'

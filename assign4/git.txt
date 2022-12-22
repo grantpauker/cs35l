@@ -1,0 +1,2 @@
+Eggert's git repo contains the local branches: maint, master, next, seen, todo. The last commit on Eggert's master branch was on 2022-10-21.
+My git repo only contains the local branch: master. The last commit on my master branch was on 22-11-03.
