@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+files=()
+error=0
+
+if ! [ -f files.txt ]; then
+	echo "ERROR: files.txt does not exist"
+	exit
+fi
+
+for f in $(cat files.txt); do
+	file=$(find | grep "/$f\$")
+	if [ "$file" == "" ]; then
+		echo "ERROR: $f does not exist"
+		error=1
+	fi
+	files+=($file)
+done
+
+if [ "$1" != "-o" ]; then
+	grep -nrH --color=always --include "*.cpp" --include "*.h" TODO && error=1
+fi
+
+if [ $error = 1 ]; then
+	exit
+fi
+
+output=$(basename $PWD).tgz
+
+tar -cvzf $output ${files[@]}
