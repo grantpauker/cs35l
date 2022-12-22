@@ -39,6 +39,7 @@ class Board extends React.Component {
 
     let currentLetter = this.state.xIsNext ? "X" : "O";
     if (this.state.turnCount < 6 && squares[i] == null) {
+      // the initial 6 piece placements
       squares[i] = currentLetter;
       this.setState({
         squares: squares,
@@ -49,6 +50,7 @@ class Board extends React.Component {
       });
     } else if (this.state.turnCount >= 6) {
       if (squares[i] === currentLetter) {
+        // select a piece
         let pieceInCenter =
           (squares[4] === "X" && this.state.xIsNext) ||
           (squares[4] === "O" && !this.state.xIsNext);
@@ -60,6 +62,7 @@ class Board extends React.Component {
           adjacentSquares: this.findAdjacent(i, pieceInCenter && i !== 4), // require a win if there is a piece in the center
         });
       } else if (this.state.adjacentSquares[i]) {
+        // move a piece
         squares[i] = currentLetter;
         squares[this.state.selectedIndex] = null;
         this.setState({
@@ -74,6 +77,7 @@ class Board extends React.Component {
   }
 
   findAdjacent(i, requireWin = false) {
+    // return an array of all adjacent squares to the given square (i)
     const squares = this.state.squares.slice();
     if (squares[i] == null) {
       return null;
